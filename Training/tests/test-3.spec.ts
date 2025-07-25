@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://skyticket.jp/');
+  await page.getByRole('button', { name: 'レンタカー' }).click();
+  await page.locator('skyticket-header-nav-item-pc').getByRole('link', { name: '国内レンタカー' }).click();
+  await page.locator('#SearchDate').click();
+  await page.getByTitle('次').click();
+  await page.getByRole('link', { name: '28' }).click();
+  await page.locator('#SearchAirportId').selectOption('280');
+  await page.locator('#SearchReturnDate').click();
+  await page.getByTitle('次').click();
+  await page.getByRole('cell', { name: '11' }).click();
+  await page.getByRole('button', { name: 'レンタカーの最安値を検索' }).click();
+  await page.locator('label').filter({ hasText: '軽自動車 ～4人乗り' }).locator('div').click();
+  await page.locator('label').filter({ hasText: 'エコカー' }).locator('i').click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('link', { name: '銀座・日本橋・東京駅周辺 （130,020円〜）' }).click();
+  await page.getByRole('link', { name: 'お茶の水・湯島・九段・後楽園 （130,020円〜）' }).click();
+  await page.locator('label').filter({ hasText: 'コンパクト ～5人乗り' }).locator('div').click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('button', { name: '選択する' }).click();
+  await page.getByText('ご利用人数 利用人数 必須 大人（12歳以上） 1 2 3').click();
+  await page.getByRole('link', { name: '格安レンタカー一覧' }).click();
+  await page.getByText('オープンカー').click();
+  await page.getByRole('button', { name: '上記の条件で再検索' }).click();
+  await page.getByRole('link', { name: '六本木・麻布・赤坂・青山 （130,020円〜）' }).click();
+  await page.getByRole('link', { name: 'お茶の水・湯島・九段・後楽園 （130,020円〜）' }).click();
+});
